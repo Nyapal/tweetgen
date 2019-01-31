@@ -1,22 +1,31 @@
 def histogram(source):
     words = source.split()
-    dict_list = {}
+    dic = {}
 
     for word in words:
-        if word in dict_list:
-            dict_list[word] += 1
+        if word in dic:
+            dic[word] += 1
         else:
-            dict_list[word] = 1
+            dic[word] = 1
 
-return dict_list
+    return dic
 
-def unique_words():
-    pass
+def unique_words(dic):
+    print(dic)
+    unique_words = []
+    for k,v in dic.items():
+        print(k)
+        if v == 1:
+            unique_words.append(k)
+    
+    print(unique_words)
+    
 
 def frequency():
     pass
 
 if __name__ == '__main__':
-    histogram('one fish two fish red fish blue fish blue blue red two')
+    hist = histogram('one fish two fish red fish blue fish blue blue red two yellow grey whyte')
+    unique_words(hist)
     # params = sys.argv
-    # rearrange(sys)
+    

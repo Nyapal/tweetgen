@@ -1,5 +1,5 @@
-def histogram(source):
-    words = source.split()
+def histogram(source_text):
+    words = source_text.split()
     dic = {}
 
     for word in words:
@@ -10,22 +10,23 @@ def histogram(source):
 
     return dic
 
-def unique_words(dic):
-    print(dic)
+def unique_words(histogram):
     unique_words = []
-    for k,v in dic.items():
-        print(k)
+    for k,v in histogram.items():
         if v == 1:
             unique_words.append(k)
     
-    print(unique_words)
-    
+    return unique_words
 
-def frequency():
-    pass
-
+def frequency(word, histogram):
+    for k,v in histogram.items():
+        if word == k:
+            print(v)
+        
 if __name__ == '__main__':
-    hist = histogram('one fish two fish red fish blue fish blue blue red two yellow grey whyte')
-    unique_words(hist)
+    h = histogram('one fish two fish red fish blue fish blue blue red two yellow grey whyte')
+    q = unique_words(h)
+    f = frequency('blue', h)
+    #print(f)
     # params = sys.argv
     

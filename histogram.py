@@ -2,21 +2,36 @@ with open('sample.words', 'r') as f:
     lines = f.read().split(" ")
 
 def histogram(lines):
-    output = []
-
+    # LIST OF TUPLES
+    #my failed attempt at tuples, coming back to this with a TA
+    output = (['nyapals', 1], ['hey', 2], ['wow', 1])
+    counter = 1
+   
     for word in lines:
-        found = False
-        new_word = str(word)
-        for lis in output:
-            if str(lis[0]) == new_word:
-                lis[1] += 1
-                found = True
-                break
-        if not found:
-            new_lis = [new_word, 1]
-            output.append(new_lis)
+        if word  counter in output:
+            print([word, counter])
+        else:
+            print(word + ' not found')
+       
     
-    return output #print(output)
+    # LIST OF LIST
+    # lis_of_lis = []
+
+    # for word in lines:
+    #     found = False
+    #     new_word = str(word)
+    #     for lis in lis_of_lis:
+    #         if str(lis[0]) == new_word:
+    #             lis[1] += 1
+    #             found = True
+    #             break
+    #     if not found:
+    #         new_lis = [new_word, 1]
+    #         lis_of_lis.append(new_lis)
+    
+    # return lis_of_lis 
+
+    #DICTIONARY SOLUTION 
    
     # dic = {}
 

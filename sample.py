@@ -10,8 +10,8 @@ def sample(histogram):
     for val in histogram:
         total += val[1]
     
+    rand_num = random.uniform(0, 1)
     for val in histogram:
-        rand_num = random.uniform(0, 1)
         cum_prob += val[1]/total
         if cum_prob >= rand_num:
             return val[0]

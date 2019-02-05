@@ -1,16 +1,31 @@
-import random, sys
+import random
 
-def rand_word(sys): 
-    sys.argv.pop(0)
-    print(sys.argv)
-    # output = []
+with open('sample.words', 'r') as f:
+    lines = f.read().split(" ")
 
-    # while len(sys.argv) > 0:
-    #     selected = random.choice(sys.argv)
-    #     output.append(selected)
-    #     sys.argv.remove(selected)
-    # print(output)
+#Jackson's code from class
+def sample(histogram):
+    total = 0
+    cum_prob = 0.0
+    for val in histogram:
+        total += val[1]
+    
+    for val in histogram:
+        rand_num = random.uniform(0, 1)
+        cum_prob += val[1]/total
+        if cum_prob >= rand_num:
+            return val[0]
 
-if __name__ == '__main__':
-    params = sys.argv
-    rand_word(sys)
+def multiple_runs(histogram):
+    count = {}
+
+    for item in histogram:
+        count[item[0]] = 0
+
+    for i in range(0, 1000):
+        count[sample(histogram)] += 1
+    
+    print(count)
+
+#if __name__ == '__main__':
+    

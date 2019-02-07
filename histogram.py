@@ -2,7 +2,19 @@ with open('sample.words', 'r') as f:
     lines = f.read().split(" ")
 
 def histogram(lines):
-    # LIST OF TUPLES
+    #DICTIONARY SOLUTION 
+    dic = {}
+
+    for word in lines:
+        if word in dic:
+            dic[word] += 1
+        else:
+            dic[word] = 1
+
+    return dic
+
+def tup_list(lines): 
+    #LIST OF TUPLES
     tup_list = []
 
     for word in lines:
@@ -17,69 +29,52 @@ def histogram(lines):
         if not found:
             tup_list.append((word, 1))
 
-    print('TUP LIST: {}'.format(tup_list))
+    return tup_list
 
-    # for k, v in lines.iteritems():
+def lis(lines):
+    #LIST OF LIST
+    lis_of_lis = []
 
-    #my failed attempt at tuples, coming back to this with a TA
-    # output = (['nyapals', 1], ['hey', 2], ['wow', 1])
-    # counter = 1
-   
-    # for word in lines:
-    #     if word  counter in output:
-    #         print([word, counter])
-    #     else:
-    #         print(word + ' not found')
-       
+    for word in lines:
+        found = False
+        new_word = str(word)
+        for lis in lis_of_lis:
+            if str(lis[0]) == new_word:
+                lis[1] += 1
+                found = True
+                break
+
+        if not found:
+            lis_of_lis.append([new_word, 1])
     
-    # LIST OF LIST
-    # lis_of_lis = []
+    return lis_of_lis 
 
-    # for word in lines:
-    #     found = False
-    #     new_word = str(word)
-    #     for lis in lis_of_lis:
-    #         if str(lis[0]) == new_word:
-    #             lis[1] += 1
-    #             found = True
-    #             break
-
-    #     if not found:
-    #         lis_of_lis.append([new_word, 1])
+def unique_words(histogram):
+    unique_words = []
+    for k,v in histogram.items():
+        if v == 1:
+            unique_words.append(k)
     
-    # return lis_of_lis 
+    return unique_words
 
-    #DICTIONARY SOLUTION 
-   
-    # dic = {}
-
-    # for word in lines:
-    #     if word in dic:
-    #         dic[word] += 1
-    #     else:
-    #         dic[word] = 1
-
-    # return dic
-
-# def unique_words(histogram):
-#     unique_words = []
-#     for k,v in histogram.items():
-#         if v == 1:
-#             unique_words.append(k)
-    
-#     return unique_words
-
-# def frequency(word, histogram):
-#     for k,v in histogram.items():
-#         if word == k:
-#             return v
+def frequency(word, histogram):
+    for k,v in histogram.items():
+        if word == k:
+            return v
         
 if __name__ == '__main__':
-    #histogram(lines)
-    h = histogram(lines)
-    # q = unique_words(h)
-    # f = frequency('one', h)
-    print('Histogram: {}'.format(h))
-    # print('Unique Words: {}'.format(q))
-    # print('Frequency: {}'.format(f))
-    
+    #CALLING ALL FUNCTIONS
+    hist = histogram(lines)
+    tup = tup_list(lines)
+    lis = lis(lines)
+
+    uniq = unique_words(hist)
+    freq = frequency('one', hist)
+
+    #PRINTING ALL FUNCTION 
+    print('Dictionary Histogram: {}'.format(hist))
+    print('Histogram Tup List: {}'.format(tup))
+    print('Histogram List of List'.format(lis))
+
+    print('Unique Words: {}'.format(uniq))
+    print('Frequency: {}'.format(freq))

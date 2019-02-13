@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    sentence = sentence()
-    return sentence
+    string = sentence()
+    return string
 
 @app.route('/hello')
 def hello_world():

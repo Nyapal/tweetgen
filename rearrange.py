@@ -1,6 +1,7 @@
 import random, sys
 
-def rearrange(sys): 
+def rearrange(sys):
+    ''' takes words from command line & rearranges them''' 
     sys.argv.pop(0)
     output = []
 

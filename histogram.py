@@ -49,6 +49,25 @@ def lis(lines):
     
     return lis_of_lis 
 
+def counts(lines):
+    #LIST OF COUNTS
+    print(lines)
+    lis = []
+    for k, v in lines.items():
+        found = False 
+        for item in lis:
+            if v in item[0]:
+                found = True
+                array = item[1]
+                array.append(key)
+                lis.remove(item)
+                lis.append((v, array))
+                break
+        if not found:
+            lis.append((v, [k]))
+    return lis
+
+
 def unique_words(histogram):
     unique_words = []
     for k,v in histogram.items():
@@ -67,14 +86,16 @@ if __name__ == '__main__':
     hist = histogram(lines)
     tup = tup_list(lines)
     lis = lis(lines)
+    count = counts(lines)
 
     uniq = unique_words(hist)
     freq = frequency('one', hist)
 
     #PRINTING ALL FUNCTION 
-    print('Dictionary Histogram: {}'.format(hist))
-    print('Histogram Tup List: {}'.format(tup))
-    print('Histogram List of List'.format(lis))
+    # print('Dictionary Histogram: {}'.format(hist))
+    # print('Histogram Tup List: {}'.format(tup))
+    # print('Histogram List of List'.format(lis))
+    print('Histogram List of Counts : {}'.format(count))
 
-    print('Unique Words: {}'.format(uniq))
-    print('Frequency: {}'.format(freq))
+    # print('Unique Words: {}'.format(uniq))
+    # print('Frequency: {}'.format(freq))

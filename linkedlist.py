@@ -1,6 +1,5 @@
 #!python
 
-
 class Node(object):
 
     def __init__(self, data):
@@ -56,18 +55,39 @@ class LinkedList(object):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
+        count = 0
+        while self.head != None:
+            count += 1
+            self.head = self.head.next
+        return count
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
+        
+        #Create new node to hold given item
+        node = Node(item) 
+
+        #if the linked list is empty, set the node to the head
+        if self.tail != None:
+            self.tail.next = node 
+        else:
+            self.head = node 
+        self.tail = node
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
+        node = Node(item)
+
+        if self.head != None:
+            self.head.next = node 
+        else:
+            self.tail = node 
+        self.head = node
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.

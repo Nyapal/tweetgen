@@ -56,9 +56,10 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
         count = 0
-        while self.head != None:
+        node = self.head
+        while node != None:
             count += 1
-            self.head = self.head.next
+            node = node.next
         return count
 
     def append(self, item):
@@ -112,10 +113,36 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
+        node = self.head
         prev = None
-        #while self.head is not None:
+        while node is not None:
+            if node.data == item:
+                if prev is not None:
+                    prev.next = node.next 
+                else:
+                    self.head = node.next
+                    return
+            prev = node 
+            node = node.next 
 
+        raise ValueError('Item not found: {}'.format(item))
 
+class DoubleLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None 
+        return 
+    
+    def add_item(self, item):
+        if self.head is None:
+            self.head = item 
+            item.prev = None 
+            item.next = None 
+            self.tail = item 
+        else:
+            self.tail.next = item 
+            item.prev = self.tail 
+            self.tail = item
 
 
 

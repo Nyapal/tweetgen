@@ -97,7 +97,6 @@ class LinkedList(object):
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
         node = self.head
-        #code fails when using self.head vs node.... ask alan about this
         while node is not None:
             if quality(node.data):
                 return node.data 
@@ -115,16 +114,17 @@ class LinkedList(object):
         # Hint: raise ValueError('Item not found: {}'.format(item))
         node = self.head
         prev = None
+
         while node is not None:
             if node.data == item:
                 if prev is not None:
                     prev.next = node.next 
                 else:
-                    self.head = node.next
-                    return
+                    self.head = node.next 
+                    
             prev = node 
             node = node.next 
-
+        
         raise ValueError('Item not found: {}'.format(item))
 
 class DoubleLinkedList:
@@ -143,9 +143,6 @@ class DoubleLinkedList:
             self.tail.next = item 
             item.prev = self.tail 
             self.tail = item
-
-
-
 
 def test_linked_list():
     ll = LinkedList()

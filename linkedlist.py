@@ -70,7 +70,7 @@ class LinkedList(object):
         node = Node(item) 
 
         #if the linked list is empty, set the node to the head
-        if self.tail != None:
+        if self.tail:
             self.tail.next = node 
         else:
             self.head = node 
@@ -83,10 +83,10 @@ class LinkedList(object):
         # TODO: Prepend node before head, if it exists
         node = Node(item)
 
-        if self.head != None:
-            self.head.next = node 
+        if self.is_empty():
+            self.tail = node
         else:
-            self.tail = node 
+            node.next = self.head
         self.head = node
 
     def find(self, quality):
@@ -95,6 +95,14 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
+        node = self.head
+        #code fails when using self.head vs node.... ask alan about this
+        while node is not None:
+            if quality(node.data):
+                return node.data 
+            else:
+                node = node.next 
+        return None
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -104,6 +112,12 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
+        prev = None
+        #while self.head is not None:
+
+
+
+
 
 
 def test_linked_list():

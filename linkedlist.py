@@ -114,6 +114,7 @@ class LinkedList(object):
         # Hint: raise ValueError('Item not found: {}'.format(item))
         node = self.head
         prev = None
+        # this is me testing shit
 
         while node is not None:
             if node.data == item:

@@ -114,7 +114,7 @@ class LinkedList(object):
         # Hint: raise ValueError('Item not found: {}'.format(item))
         node = self.head
         prev = None
-        # this is me testing shit
+        found = False
 
         while node is not None:
             if node.data == item:
@@ -122,11 +122,18 @@ class LinkedList(object):
                     prev.next = node.next 
                 else:
                     self.head = node.next 
+                found = True
+
+                #if item deleted is tail, update tail
+                if node.next == None:
+                    self.tail = prev
+                break
                     
             prev = node 
             node = node.next 
         
-        raise ValueError('Item not found: {}'.format(item))
+        if not found:
+            raise ValueError('Item not found: {}'.format(item))
 
 class DoubleLinkedList:
     def __init__(self):

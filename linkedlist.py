@@ -118,17 +118,16 @@ class LinkedList(object):
 
         while node is not None:
             if node.data == item:
+                found = True
                 if prev is not None:
                     prev.next = node.next 
                 else:
                     self.head = node.next 
-                found = True
 
-                #if item deleted is tail, update tail
                 if node.next == None:
                     self.tail = prev
-                break
-                    
+                
+
             prev = node 
             node = node.next 
         

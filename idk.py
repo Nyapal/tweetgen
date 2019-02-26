@@ -1,7 +1,20 @@
-import random 
-from random import sample
+import random
 
-with open('sample.words', 'r') as f:
-    words_list = [line.strip() for line in f]
+quotes = ("It's just a flesh wound.",
+          "He's not the Messiah. He's a very naughty boy!",
+          "THIS IS AN EX-PARROT!!")
 
-print(' '.join(random.sample(words_list, 5)))
+
+def random_python_quote():
+    rand_index = random.randint(0, len(quotes) - 1)
+    return quotes[rand_index]
+
+if __name__ == '__main__':
+    quote = random_python_quote()
+    print(quote)
+
+
+
+# if __name__ == '__main__':
+#     quote = random_python_quote()
+#     print(quote)

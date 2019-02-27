@@ -1,4 +1,3 @@
-#!python
 from linkedlist import LinkedList
 
 class HashTable(object):
@@ -7,6 +6,7 @@ class HashTable(object):
         """Initialize this hash table with the given initial size."""
         # Create a new list (used as fixed-size array) of empty linked lists
         self.buckets = [LinkedList() for _ in range(init_size)]
+        self.count = 0
 
     def __str__(self):
         """Return a formatted string representation of this hash table."""
@@ -29,7 +29,6 @@ class HashTable(object):
         all_keys = []
         for bucket in self.buckets:
             for key, value in bucket.items():
-                print(key, value)
                 all_keys.append(key)
         return all_keys
 
@@ -106,10 +105,15 @@ class HashTable(object):
         
         # If found, update value associated with given key
         #if entry is not None: #found entry
+        if entry:
+            bucket.delete(entry)
+            self.count -= 1
+        bucket.append((key, value))
+        self.count += 1
 
         # Otherwise, insert given key-value entry into bucket
-        entry = (key, value)
-        bucket.append(entry)
+        # entry = (key, value)
+        # bucket.append(entry)
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.

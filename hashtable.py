@@ -84,12 +84,17 @@ class HashTable(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # Find bucket where given key belongs
         #index = self._bucket_index(key)
-        bucket = self.buckets[self._bucket_index(key)]
+        #homegirl (self.buckets) is an array 
+        bucket = self.buckets[self._bucket_index(key)] #0(1) to calculate index & index an array
+        # def key_matcher(key_val):
+        #     if key_val[0] == key:
+        #         return True 
+
         # Check if key-value entry exists in bucket
         entry = bucket.find(lambda key_val: key_val[0] == key)
         # If found, return value associated with given key
         if entry is not None: #found entry
-            return entry[1] #get the val only 
+            return entry[1] #entry = (key, value)
         else:
         # Otherwise, raise error to tell user get failed
             raise KeyError('Key not found: {}'.format(key))
@@ -110,24 +115,30 @@ class HashTable(object):
             self.count -= 1
         bucket.append((key, value))
         self.count += 1
-
         # Otherwise, insert given key-value entry into bucket
         # entry = (key, value)
         # bucket.append(entry)
 
+        # TODO: complete linked list 'replace' strech challenge to make work :)  
+        # if entry is not None:
+        #     new-entry = (key, value)
+        #     bucket.replace(entry, new-entry)
+
     def delete(self, key):
-        """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        """Delete the given key from this hash table, or raise KeyError."""
+        """Running time: O(l) for worst case  """
         # Find bucket where given key belongs
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
+        bucket = self.buckets[self._bucket_index(key)] # 0(1)
+
         # Check if key-value entry exists in bucket
-        entry = bucket.find(lambda key_val: key_val[0] == key)
-        # If found, delete entry associated with given key
-        if entry:
-            bucket.delete(entry)
+        entry = bucket.find(lambda key_val: key_val[0] == key) # 0(l)
+       
+        # If found.. 
+        if entry is not None:
+            # delete entry associated with given key
+            bucket.delete(entry) #0(l)
         else: 
-        # Otherwise, raise error to tell user delete failed
+            # raise error to tell user delete failed
             raise KeyError('Key not found: {}'.format(key))
 
 
@@ -160,7 +171,6 @@ def test_hash_table():
 
         print('contains(X): {}'.format(ht.contains('X')))
         print('length: {}'.format(ht.length()))
-
 
 if __name__ == '__main__':
     test_hash_table()
